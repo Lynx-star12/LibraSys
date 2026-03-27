@@ -1,2 +1,2 @@
-# LibraSys
-repositorio criado para gerenciar os livros emprestados da biblioteca
+# Contexto/problema
+A StarCorporation, uma empresa que atua no desenvolvimento de sistemas para diferentes áreas, nos contratou (esta turma, esta sala de aula) para criar uma solução voltada para a gestão de uma livraria Cais des Lettres. Durante as conversas com os responsáveis, foi identificado um problema no controle de usuários, principalmente no empréstimo de livros, o que pode gerar perdas, furtos ou a não devolução dos exemplares. Dessa forma, foram levantados requisitos para desenvolver um sistema que permita cadastrar usuários, registrar os empréstimos e acompanhar a devolução dos livros, garantindo mais organização e segurança no controle da livraria.
