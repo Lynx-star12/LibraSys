@@ -1,4 +1,4 @@
-#Limite de Empréstimos por Usuário
+# Limite de Empréstimos por Usuário
 **COMO** Bibliotecário Chefe,
 **QUERO** definir uma quantidade máxima de livros que cada usuário pode retirar por vez
 **PARA** que eu possa limitar o risco de perda do acervo e garantir que mais leitores tenham acesso aos livros.
