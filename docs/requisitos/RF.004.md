@@ -1,5 +1,5 @@
 # Lista Negra 
-**COMO** Administrador(a) do Sistema,
+**COMO** Administrador(a) do Sistema e gerente,
 **QUERO** impedir que usuários com pendências realizem novos empréstimos,
 **PARA** reduzir o risco de acúmulo de prejuízos e garantir a devolução do acervo atual.
 
