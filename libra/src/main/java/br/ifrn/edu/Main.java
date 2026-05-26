@@ -1,146 +1,219 @@
 package br.ifrn.edu;
-// req 001
+// testando =)
 import br.edu.ifrn.libra.modelo.Secao;
 import br.edu.ifrn.libra.servico;
 import br.edu.ifrn.libra.modelo.usuario;
 import br.edu.ifrn.libra.usuarioServico;
+import br.edu.ifrn.libra.modelo.ListaNegra;
+import br.edu.ifrn.libra.ListaNegraServico;
+import br.edu.ifrn.libra.modelo.HistoricoCustodia;
+import br.edu.ifrn.libra.HistoricoCustodiaServico;
+import br.edu.ifrn.libra.EmprestimoServico;
 
 public class Main {
-
     public static void main(String[] args) {
 
-        // Instanciar serviço
-        servico servico = new servico();
+       
+        // teste req.001 — cadrastro das seções 
+        
 
-        // Criar seção
-        Secao secao = new Secao();
+        System.out.println(
+                " Teste seção =) "
+        );
 
-        secao.setNomeGenero("Ficção Científica");
-        secao.setCodigo("FC001");
-        secao.setLocalizacao("Corredor A");
+        servico secaoServico =
+                new servico();
+
+        Secao secao =
+                new Secao();
+
+        secao.setNomeGenero(
+                "Ficção Científica"
+        );
+
+        secao.setCodigo("AH005");
+
+        secao.setLocalizacao(
+                "Corredor A"
+        );
+
         secao.setCapacidadeMaxima(100);
-        secao.setLivrosOcupados(80);
 
-        // Testar cadastro
-        System.out.println("=== TESTE DE CADASTRO ===");
+        secao.setLivrosOcupados(70);
 
         try {
 
-            servico.cadastrarSecao(secao);
+            secaoServico.cadastrarSecao(
+                    secao
+            );
 
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
 
             System.out.println(
-                "Erro: " + e.getMessage()
+                    e.getMessage()
             );
         }
 
-        // Mostrar dados
-        System.out.println("\n=== STATUS DA SEÇÃO ===");
-
         System.out.println(
-            "Gênero: " + secao.getNomeGenero()
+                "Espaços disponíveis: "
+                + secao.getEspacosDisponiveis()
         );
 
-        System.out.println(
-            "Código: " + secao.getCodigo()
-        );
+        
+        // Teste REQ.002 — Cadrastro de Usuários
+        
 
         System.out.println(
-            "Localização: " + secao.getLocalizacao()
+                " Teste usuario =)"
         );
 
-        System.out.println(
-            "Capacidade Máxima: "
-            + secao.getCapacidadeMaxima()
+        usuarioServico usuarioServico =
+                new usuarioServico();
+
+        usuario usuario =
+                new usuario();
+
+        usuario.setNomeCompleto(
+                "Maria Silva"
         );
 
-        System.out.println(
-            "Espaços Disponíveis: "
-            + secao.getEspacosDisponiveis()
+        usuario.setCpf(
+                "12345678900"
         );
 
-        if (secao.isLotada()) {
+        usuario.setEmail(
+                "maria@email.com"
+        );
 
-            System.out.println(
-                "A seção está LOTADA."
-            );
+        usuario.setTelefone(
+                "(84)99999-9999"
+        );
 
-        } else {
+        usuario.setStatusCadastro(
+                "ATIVO"
+        );
 
-            System.out.println(
-                "Ainda há espaço disponível."
-            );
-        }
-    }
+        // REQ.005
+        usuario.setLimiteEmprestimos(3);
 
-// req. 002
-public class main {
-
-    public static void ain(String[] args) {
-
-        // Instanciar serviço
-        usuarioServico servico = new usuarioServico();
-
-        // Criar usuário
-        usuario usuario = new usuario();
-
-        usuario.setNomeCompleto("Maria Silva");
-        usuario.setCpf("12345678900");
-        usuario.setEmail("maria@email.com");
-        usuario.setTelefone("(84)99999-9999");
-        usuario.setStatusCadastro("ATIVO");
-
-        // Testar cadastro
-        System.out.println("=== TESTE DE CADASTRO ===");
+        usuario.setEmprestimosAtivos(2);
 
         try {
 
-            servico.cadastrarUsuario(usuario);
+            usuarioServico.cadastrarUsuario(
+                    usuario
+            );
 
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
 
             System.out.println(
-                    "Erro: " + e.getMessage()
+                    e.getMessage()
             );
         }
 
-        // Mostrar dados
-        System.out.println("\n=== DADOS DO USUÁRIO ===");
+        System.out.println(
+                "Usuário: "
+                + usuario.getNomeCompleto()
+        );
+
+        // =====================================================
+        // TESTE REQ.004 — LISTA NEGRA
+        // =====================================================
 
         System.out.println(
-                "Nome: " + usuario.getNomeCompleto()
+                "\n===== TESTE LISTA NEGRA ====="
+        );
+
+        ListaNegra listaNegra =
+                new ListaNegra();
+
+        listaNegra.setCpfUsuario(
+                usuario.getCpf()
+        );
+
+        listaNegra.setPossuiMulta(true);
+
+        listaNegra.setPossuiAtraso(false);
+
+        ListaNegraServico listaServico =
+                new ListaNegraServico();
+
+        listaServico.verificarPendencias(
+                listaNegra
         );
 
         System.out.println(
-                "CPF: " + usuario.getCpf()
+                "Bloqueado: "
+                + listaNegra.isBloqueado()
         );
+
+        // =====================================================
+        // TESTE REQ.005 — LIMITE DE EMPRÉSTIMOS
+        // =====================================================
 
         System.out.println(
-                "Email: " + usuario.getEmail()
+                "\n===== TESTE EMPRÉSTIMO ====="
         );
 
-        System.out.println(
-                "Telefone: " + usuario.getTelefone()
-        );
+        EmprestimoServico emprestimoServico =
+                new EmprestimoServico();
 
-        System.out.println(
-                "Status: " + usuario.getStatusCadastro()
-        );
+        try {
 
-        // Verificar status
-        if (usuario.isAtivo()) {
+            emprestimoServico
+                    .realizarEmprestimo(
+                            usuario
+                    );
+
+        } catch (Exception e) {
 
             System.out.println(
-                    "Usuário liberado para empréstimos."
-            );
-
-        } else {
-
-            System.out.println(
-                    "Usuário bloqueado para empréstimos."
+                    e.getMessage()
             );
         }
+
+        System.out.println(
+                "Empréstimos ativos: "
+                + usuario.getEmprestimosAtivos()
+        );
+
+        // DEVOLUÇÃO
+
+        emprestimoServico
+                .registrarDevolucao(
+                        usuario
+                );
+
+        System.out.println(
+                "Após devolução: "
+                + usuario.getEmprestimosAtivos()
+        );
+
+        // =====================================================
+        // TESTE REQ.003 — HISTÓRICO DE CUSTÓDIA
+        // =====================================================
+
+        System.out.println(
+                "\n===== TESTE HISTÓRICO ====="
+        );
+
+        HistoricoCustodia movimentacao =
+                new HistoricoCustodia(
+                        1,
+                        100,
+                        500,
+                        "EMPRESTIMO"
+                );
+
+        HistoricoCustodiaServico historicoServico =
+                new HistoricoCustodiaServico();
+
+        historicoServico
+                .registrarMovimentacao(
+                        movimentacao
+                );
+
+        historicoServico
+                .listarHistorico();
     }
-}
 }
