@@ -1,12 +1,26 @@
 package br.edu.ifrn.libra.modelo;
 
+ 
+
 public class Secao {
 
     private String nomeGenero;
     private String codigo;
     private String localizacao;
+    private int capacidadeMaxima;
+    private int livrosOcupados;
 
+    // Método para calcular vagas disponíveis
+    public int getEspacosDisponiveis() {
+        return capacidadeMaxima - livrosOcupados;
+    }
 
+    // Método para verificar se está lotada
+    public boolean isLotada() {
+        return livrosOcupados >= capacidadeMaxima;
+    }
+
+    // GETTERS E SETTERS
 
     public String getNomeGenero() {
         return nomeGenero;
@@ -31,4 +45,22 @@ public class Secao {
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
     }
+
+    public int getCapacidadeMaxima() {
+        return capacidadeMaxima;
+    }
+
+    public void setCapacidadeMaxima(int capacidadeMaxima) {
+        this.capacidadeMaxima = capacidadeMaxima;
+    }
+
+    public int getLivrosOcupados() {
+        return livrosOcupados;
+    }
+
+    public void setLivrosOcupados(int livrosOcupados) {
+        this.livrosOcupados = livrosOcupados;
+    }
 }
+
+    
