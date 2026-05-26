@@ -7,6 +7,8 @@ public class usuario {
     private String email;
     private String telefone;
     private String statusCadastro;
+    private int limiteEmprestimos;
+private int emprestimosAtivos;
 
     // Método para verificar se usuário está ativo
     public boolean isAtivo() {
@@ -55,4 +57,41 @@ public class usuario {
     public void setStatusCadastro(String statusCadastro) {
         this.statusCadastro = statusCadastro;
     }
+
+public boolean atingiuLimite() {
+
+    return emprestimosAtivos >= limiteEmprestimos;
+}
+
+public void adicionarEmprestimo() {
+
+    emprestimosAtivos++;
+}
+
+public void devolverLivro() {
+
+    emprestimosAtivos--;
+}
+// adicionando GETTERS E SETTERS
+public int getLimiteEmprestimos() {
+    return limiteEmprestimos;
+}
+
+public void setLimiteEmprestimos(
+        int limiteEmprestimos) {
+
+    this.limiteEmprestimos =
+            limiteEmprestimos;
+}
+
+public int getEmprestimosAtivos() {
+    return emprestimosAtivos;
+}
+
+public void setEmprestimosAtivos(
+        int emprestimosAtivos) {
+
+    this.emprestimosAtivos =
+            emprestimosAtivos;
+}
 }
