@@ -2,6 +2,8 @@ package br.ifrn.edu;
 // req 001
 import br.edu.ifrn.libra.modelo.Secao;
 import br.edu.ifrn.libra.servico;
+import br.edu.ifrn.libra.modelo.usuario;
+import br.edu.ifrn.libra.usuarioServico;
 
 public class Main {
 
@@ -71,5 +73,74 @@ public class Main {
             );
         }
     }
-}
+
 // req. 002
+public class main {
+
+    public static void ain(String[] args) {
+
+        // Instanciar serviço
+        usuarioServico servico = new usuarioServico();
+
+        // Criar usuário
+        usuario usuario = new usuario();
+
+        usuario.setNomeCompleto("Maria Silva");
+        usuario.setCpf("12345678900");
+        usuario.setEmail("maria@email.com");
+        usuario.setTelefone("(84)99999-9999");
+        usuario.setStatusCadastro("ATIVO");
+
+        // Testar cadastro
+        System.out.println("=== TESTE DE CADASTRO ===");
+
+        try {
+
+            servico.cadastrarUsuario(usuario);
+
+        } catch (IllegalArgumentException e) {
+
+            System.out.println(
+                    "Erro: " + e.getMessage()
+            );
+        }
+
+        // Mostrar dados
+        System.out.println("\n=== DADOS DO USUÁRIO ===");
+
+        System.out.println(
+                "Nome: " + usuario.getNomeCompleto()
+        );
+
+        System.out.println(
+                "CPF: " + usuario.getCpf()
+        );
+
+        System.out.println(
+                "Email: " + usuario.getEmail()
+        );
+
+        System.out.println(
+                "Telefone: " + usuario.getTelefone()
+        );
+
+        System.out.println(
+                "Status: " + usuario.getStatusCadastro()
+        );
+
+        // Verificar status
+        if (usuario.isAtivo()) {
+
+            System.out.println(
+                    "Usuário liberado para empréstimos."
+            );
+
+        } else {
+
+            System.out.println(
+                    "Usuário bloqueado para empréstimos."
+            );
+        }
+    }
+}
+}
