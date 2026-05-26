@@ -14,7 +14,7 @@ public class ListaNegraServico {
         usuario.setBloqueado(true);
 
         System.out.println(
-                "Usuário bloqueado!"
+                "Usuário na lista negra!"
         );
 
     } else {
@@ -22,7 +22,7 @@ public class ListaNegraServico {
         usuario.setBloqueado(false);
 
         System.out.println(
-                "Usuário liberado!"
+                "Usuário livre da lista negra!"
         );
     }
 }
