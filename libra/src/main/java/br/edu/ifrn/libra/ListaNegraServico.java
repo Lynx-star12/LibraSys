@@ -6,7 +6,7 @@ public class ListaNegraServico {
     public void verificarPendencias(
         ListaNegra usuario) {
 
-    // Se possui multa ou atraso → bloqueia
+    // Se possui multa ou atraso = bloqueia
 
     if (usuario.isPossuiMulta()
             || usuario.isPossuiAtraso()) {
