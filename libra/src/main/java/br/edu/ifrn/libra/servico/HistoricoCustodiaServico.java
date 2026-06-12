@@ -1,9 +1,9 @@
-package br.edu.ifrn.servico;
+package br.edu.ifrn.libra;
+
+import br.edu.ifrn.libra.modelo.HistoricoCustodia;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import br.edu.ifrn.servico.modelo.HistoricoCustodia;
 public class HistoricoCustodiaServico {
     private List<HistoricoCustodia> historico =
     new ArrayList<>();

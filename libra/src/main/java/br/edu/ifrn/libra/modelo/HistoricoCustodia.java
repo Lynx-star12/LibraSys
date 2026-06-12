@@ -1,4 +1,4 @@
-package br.edu.ifrn.servico.modelo;
+package br.edu.ifrn.libra.modelo;
 
 import java.time.LocalDateTime;
 

@@ -1,9 +1,9 @@
-package br.edu.ifrn.servico;
+package br.edu.ifrn.libra;
+
+import br.edu.ifrn.libra.modelo.usuario;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import br.edu.ifrn.servico.modelo.usuario;
 
 
 public class usuarioServico {
