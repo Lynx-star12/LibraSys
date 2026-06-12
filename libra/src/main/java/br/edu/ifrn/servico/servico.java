@@ -1,9 +1,9 @@
-package br.edu.ifrn.libra;
-
-import br.edu.ifrn.libra.modelo.Secao;
+package br.edu.ifrn.servico;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.edu.ifrn.servico.modelo.Secao;
 
 public class servico {
 

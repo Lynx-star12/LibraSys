@@ -1,6 +1,6 @@
-package br.edu.ifrn.libra;
+package br.edu.ifrn.servico;
 
-import br.edu.ifrn.libra.modelo.ListaNegra;
+import br.edu.ifrn.servico.modelo.ListaNegra;
 public class ListaNegraServico {
 
     public void verificarPendencias(

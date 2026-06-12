@@ -1,6 +1,6 @@
-package br.edu.ifrn.libra;
+package br.edu.ifrn.servico;
 
-import br.edu.ifrn.libra.modelo.usuario;
+import br.edu.ifrn.servico.modelo.usuario;
 public class EmprestimoServico {
 
     public void realizarEmprestimo(
