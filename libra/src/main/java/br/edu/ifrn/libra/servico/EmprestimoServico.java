@@ -1,4 +1,4 @@
-package br.edu.ifrn.libra;
+package br.edu.ifrn.libra.servico;
 
 import br.edu.ifrn.libra.modelo.usuario;
 public class EmprestimoServico {

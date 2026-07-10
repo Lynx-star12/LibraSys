@@ -1,4 +1,4 @@
-package br.ifrn.edu;
+package br.edu.ifrn;
 // testando =)
 import br.edu.ifrn.libra.modelo.Secao;
 import br.edu.ifrn.libra.servico;
@@ -74,7 +74,7 @@ public class Main {
                 new usuario();
 
         usuario.setNomeCompleto(
-                "Maria Silva"
+                "Luiz Otavio"
         );
 
         usuario.setCpf(
@@ -82,7 +82,7 @@ public class Main {
         );
 
         usuario.setEmail(
-                "maria@email.com"
+                "Otavio@email.com"
         );
 
         usuario.setTelefone(
