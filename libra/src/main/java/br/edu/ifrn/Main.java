@@ -1,14 +1,14 @@
 package br.edu.ifrn;
 // testando =)
 import br.edu.ifrn.libra.modelo.Secao;
-import br.edu.ifrn.libra.servico;
+import br.edu.ifrn.libra.servico.servico;
 import br.edu.ifrn.libra.modelo.usuario;
-import br.edu.ifrn.libra.usuarioServico;
+import br.edu.ifrn.libra.servico.usuarioServico;
 import br.edu.ifrn.libra.modelo.ListaNegra;
-import br.edu.ifrn.libra.ListaNegraServico;
+import br.edu.ifrn.libra.servico.ListaNegraServico;
 import br.edu.ifrn.libra.modelo.HistoricoCustodia;
-import br.edu.ifrn.libra.HistoricoCustodiaServico;
-import br.edu.ifrn.libra.EmprestimoServico;
+import br.edu.ifrn.libra.servico.HistoricoCustodiaServico;
+import br.edu.ifrn.libra.servico.EmprestimoServico;
 
 public class Main {
     public static void main(String[] args) {
