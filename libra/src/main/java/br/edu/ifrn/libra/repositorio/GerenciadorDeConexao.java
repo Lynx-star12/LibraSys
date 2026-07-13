@@ -1,5 +1,24 @@
 package br.edu.ifrn.libra.repositorio;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+
 public class GerenciadorDeConexao {
+
+    // URL apontando diretamente para o banco de dados já existente chamado higeia_db
+    private static final String URL = "jdbc:mysql://localhost:3306/libra_db?useTimezone=true&serverTimezone=UTC";
+    private static final String USER = "root";     // Substitua pelo usuário do seu MySQL local
+    private static final String PASSWORD = ""; // Substitua pela senha do seu MySQL local
+// professor, não achei a senha do mysql local então deixei igual ao seu 
+    /**
+     * Abre e retorna uma conexão ativa com o banco de dados.
+     * @return java.sql.Connection
+     * @throws SQLException Caso o serviço do MySQL esteja desligado ou as credenciais estejam erradas
+     */
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
 
 }
