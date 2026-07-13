@@ -1,14 +1,13 @@
 package br.edu.ifrn.libra.servico;
 
-import br.edu.ifrn.libra.modelo.usuario;
-
-import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifrn.libra.modelo.usuario;
+import br.edu.ifrn.libra.repositorio.Usuariorepositorio;
 
 public class usuarioServico {
 
-    private List<usuario> usuarios = new ArrayList<>();
+    private final Usuariorepositorio repositorio = new Usuariorepositorio();
 
     public void cadastrarUsuario(usuario novoUsuario) {
 
@@ -48,22 +47,23 @@ public class usuarioServico {
             );
         }
 
-        // Verificar CPF duplicado
-        for (usuario usuario : usuarios) {
+        // Verificar CPF duplicado (agora consultando o MySQL em vez da List em memória)
+        if (repositorio.buscarPorCpf(novoUsuario.getCpf()) != null) {
 
-            if (usuario.getCpf().equals(novoUsuario.getCpf())) {
-
-                throw new IllegalArgumentException(
-                        "CPF já cadastrado no sistema."
-                );
-            }
+            throw new IllegalArgumentException(
+                    "CPF já cadastrado no sistema."
+            );
         }
 
-        // Salvar usuário
-        usuarios.add(novoUsuario);
+        // Salvar usuário no MySQL
+        repositorio.inserir(novoUsuario);
 
         System.out.println(
                 "Usuário cadastrado com sucesso!"
         );
+    }
+
+    public List<usuario> listarUsuarios() {
+        return repositorio.selecionarTodos();
     }
 }

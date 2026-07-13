@@ -1,13 +1,13 @@
 package br.edu.ifrn.libra.servico;
 
-import br.edu.ifrn.libra.modelo.Secao;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import br.edu.ifrn.libra.modelo.Secao;
+import br.edu.ifrn.libra.repositorio.SecaoRepositorio;
 
 public class servico {
 
-    private List<Secao> secoes = new ArrayList<>();
+    private final SecaoRepositorio repositorio = new SecaoRepositorio();
 
     public void cadastrarSecao(Secao novaSecao) {
 
@@ -19,31 +19,30 @@ public class servico {
             );
         }
 
-        // Verificar duplicidade
-        for (Secao secao : secoes) {
+        // Verificar duplicidade (agora consultando o MySQL em vez da List em memória)
+        if (repositorio.buscarPorNomeGenero(novaSecao.getNomeGenero()) != null) {
 
-            if (secao.getNomeGenero().equalsIgnoreCase(
-                    novaSecao.getNomeGenero())) {
-
-                throw new IllegalArgumentException(
-                    "Já existe uma seção com esse gênero."
-                );
-            }
-
-            if (secao.getCodigo().equalsIgnoreCase(
-                    novaSecao.getCodigo())) {
-
-                throw new IllegalArgumentException(
-                    "Já existe uma seção com esse código."
-                );
-            }
+            throw new IllegalArgumentException(
+                "Já existe uma seção com esse gênero."
+            );
         }
 
-        // Salvar seção
-        secoes.add(novaSecao);
+        if (repositorio.buscarPorCodigo(novaSecao.getCodigo()) != null) {
+
+            throw new IllegalArgumentException(
+                "Já existe uma seção com esse código."
+            );
+        }
+
+        // Salvar seção no MySQL
+        repositorio.inserir(novaSecao);
 
         System.out.println(
             "Seção cadastrada com sucesso!"
         );
+    }
+
+    public List<Secao> listarSecoes() {
+        return repositorio.selecionarTodas();
     }
 }
