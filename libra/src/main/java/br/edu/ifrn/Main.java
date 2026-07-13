@@ -1,219 +1,42 @@
 package br.edu.ifrn;
-// testando =)
+
 import br.edu.ifrn.libra.modelo.Secao;
 import br.edu.ifrn.libra.servico.servico;
-import br.edu.ifrn.libra.modelo.usuario;
-import br.edu.ifrn.libra.servico.usuarioServico;
-import br.edu.ifrn.libra.modelo.ListaNegra;
-import br.edu.ifrn.libra.servico.ListaNegraServico;
-import br.edu.ifrn.libra.modelo.HistoricoCustodia;
-import br.edu.ifrn.libra.servico.HistoricoCustodiaServico;
-import br.edu.ifrn.libra.servico.EmprestimoServico;
 
 public class Main {
     public static void main(String[] args) {
+        servico secaoServico = new servico();
 
-       
-        // teste req.001 — cadrastro das seções 
-        
+        System.out.println("\n--- [C] - INSERINDO Seções no MySQL (Pré-criado via Workbench) ---");
+        Secao secao1 = new Secao();
+        secao1.setNomeGenero("Maternidade"); // pode trocar pro seu domínio real, ex: "Ficção Científica"
+        secao1.setCodigo("SEC-01");
+        secao1.setLocalizacao("Corredor A");
+        secao1.setCapacidadeMaxima(5);
+        secao1.setLivrosOcupados(0);
 
-        System.out.println(
-                " Teste seção =) "
-        );
+        Secao secao2 = new Secao();
+        secao2.setNomeGenero("Isolamento Clínico");
+        secao2.setCodigo("SEC-02");
+        secao2.setLocalizacao("Corredor B");
+        secao2.setCapacidadeMaxima(3);
+        secao2.setLivrosOcupados(0);
 
-        servico secaoServico =
-                new servico();
+        secaoServico.cadastrarSecao(secao1);
+        secaoServico.cadastrarSecao(secao2);
 
-        Secao secao =
-                new Secao();
+        System.out.println("\n--- [R] - SELECIONANDO e exibindo os registros ---");
+        secaoServico.listarSecoes().forEach(System.out::println);
 
-        secao.setNomeGenero(
-                "Ficção Científica"
-        );
+        System.out.println("\n--- [U] - ATUALIZANDO e Modificando Dados ---");
+        secao2.setLivrosOcupados(3); // Alterando estado do objeto para lotado
+        secaoServico.alterarDadosSecao(secao2);
+        secaoServico.listarSecoes().forEach(System.out::println);
 
-        secao.setCodigo("AH005");
+        System.out.println("\n--- [D] - EXCLUINDO um registro do MySQL ---");
+        secaoServico.removerSecao(secao1.getId());
 
-        secao.setLocalizacao(
-                "Corredor A"
-        );
-
-        secao.setCapacidadeMaxima(100);
-
-        secao.setLivrosOcupados(70);
-
-        try {
-
-            secaoServico.cadastrarSecao(
-                    secao
-            );
-
-        } catch (Exception e) {
-
-            System.out.println(
-                    e.getMessage()
-            );
-        }
-
-        System.out.println(
-                "Espaços disponíveis: "
-                + secao.getEspacosDisponiveis()
-        );
-
-        
-        // Teste REQ.002 — Cadrastro de Usuários
-        
-
-        System.out.println(
-                " Teste usuario =)"
-        );
-
-        usuarioServico usuarioServico =
-                new usuarioServico();
-
-        usuario usuario =
-                new usuario();
-
-        usuario.setNomeCompleto(
-                "Luiz Otavio"
-        );
-
-        usuario.setCpf(
-                "12345678900"
-        );
-
-        usuario.setEmail(
-                "Otavio@email.com"
-        );
-
-        usuario.setTelefone(
-                "(84)99999-9999"
-        );
-
-        usuario.setStatusCadastro(
-                "ATIVO"
-        );
-
-        // REQ.005
-        usuario.setLimiteEmprestimos(3);
-
-        usuario.setEmprestimosAtivos(2);
-
-        try {
-
-            usuarioServico.cadastrarUsuario(
-                    usuario
-            );
-
-        } catch (Exception e) {
-
-            System.out.println(
-                    e.getMessage()
-            );
-        }
-
-        System.out.println(
-                "Usuário: "
-                + usuario.getNomeCompleto()
-        );
-
-        // =====================================================
-        // TESTE REQ.004 — LISTA NEGRA
-        // =====================================================
-
-        System.out.println(
-                "\n===== TESTE LISTA NEGRA ====="
-        );
-
-        ListaNegra listaNegra =
-                new ListaNegra();
-
-        listaNegra.setCpfUsuario(
-                usuario.getCpf()
-        );
-
-        listaNegra.setPossuiMulta(true);
-
-        listaNegra.setPossuiAtraso(false);
-
-        ListaNegraServico listaServico =
-                new ListaNegraServico();
-
-        listaServico.verificarPendencias(
-                listaNegra
-        );
-
-        System.out.println(
-                "Bloqueado: "
-                + listaNegra.isBloqueado()
-        );
-
-        // =====================================================
-        // TESTE REQ.005 — LIMITE DE EMPRÉSTIMOS
-        // =====================================================
-
-        System.out.println(
-                "\n===== TESTE EMPRÉSTIMO ====="
-        );
-
-        EmprestimoServico emprestimoServico =
-                new EmprestimoServico();
-
-        try {
-
-            emprestimoServico
-                    .realizarEmprestimo(
-                            usuario
-                    );
-
-        } catch (Exception e) {
-
-            System.out.println(
-                    e.getMessage()
-            );
-        }
-
-        System.out.println(
-                "Empréstimos ativos: "
-                + usuario.getEmprestimosAtivos()
-        );
-
-        // DEVOLUÇÃO
-
-        emprestimoServico
-                .registrarDevolucao(
-                        usuario
-                );
-
-        System.out.println(
-                "Após devolução: "
-                + usuario.getEmprestimosAtivos()
-        );
-
-        // =====================================================
-        // TESTE REQ.003 — HISTÓRICO DE CUSTÓDIA
-        // =====================================================
-
-        System.out.println(
-                "\n===== TESTE HISTÓRICO ====="
-        );
-
-        HistoricoCustodia movimentacao =
-                new HistoricoCustodia(
-                        1,
-                        100,
-                        500,
-                        "EMPRESTIMO"
-                );
-
-        HistoricoCustodiaServico historicoServico =
-                new HistoricoCustodiaServico();
-
-        historicoServico
-                .registrarMovimentacao(
-                        movimentacao
-                );
-
-        historicoServico
-                .listarHistorico();
+        System.out.println("\nEstado final da tabela no MySQL:");
+        secaoServico.listarSecoes().forEach(System.out::println);
     }
 }

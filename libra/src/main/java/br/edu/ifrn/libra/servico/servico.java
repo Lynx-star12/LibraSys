@@ -45,4 +45,29 @@ public class servico {
     public List<Secao> listarSecoes() {
         return repositorio.selecionarTodas();
     }
+
+    // [U] - ATUALIZAR (equivalente ao alterarDadosAla do professor)
+    public void alterarDadosSecao(Secao secao) {
+        if (secao.getId() == null) {
+            throw new IllegalArgumentException(
+                "Erro de Regra: Não é possível atualizar uma seção sem ID."
+            );
+        }
+        if (secao.isLotada()) {
+            System.out.println(
+                "LOG ALERTA: A seção '" + secao.getNomeGenero() + "' atingiu a lotação máxima!"
+            );
+        }
+        repositorio.atualizar(secao);
+    }
+
+    // [D] - EXCLUIR (equivalente ao removerAlaDoHospital do professor)
+    public void removerSecao(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException(
+                "Erro de Regra: ID inválido para exclusão."
+            );
+        }
+        repositorio.excluir(id);
+    }
 }
