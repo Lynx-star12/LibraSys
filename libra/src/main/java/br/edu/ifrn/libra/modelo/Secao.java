@@ -4,6 +4,7 @@ package br.edu.ifrn.libra.modelo;
 
 public class Secao {
 
+    private Long id;
     private String nomeGenero;
     private String codigo;
     private String localizacao;
@@ -61,6 +62,21 @@ public class Secao {
     public void setLivrosOcupados(int livrosOcupados) {
         this.livrosOcupados = livrosOcupados;
     }
+
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    @Override
+    public String toString() {
+        return "Secao{id=" + id + ", nomeGenero='" + nomeGenero + "', codigo='" + codigo +
+               "', localizacao='" + localizacao + "', capacidadeMaxima=" + capacidadeMaxima +
+               ", livrosOcupados=" + livrosOcupados + ", espacosDisponiveis=" + getEspacosDisponiveis() + "}";
+    }
 }
+
 
     

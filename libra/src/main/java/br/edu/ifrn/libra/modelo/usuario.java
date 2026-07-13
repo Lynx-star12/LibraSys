@@ -2,6 +2,7 @@ package br.edu.ifrn.libra.modelo;
 
 public class usuario {
 
+    private Long id;
     private String nomeCompleto;
     private String cpf;
     private String email;
@@ -94,4 +95,17 @@ public void setEmprestimosAtivos(
     this.emprestimosAtivos =
             emprestimosAtivos;
 }
+public Long getId() {
+    return id;
+}
+
+public void setId(Long id) {
+    this.id = id;
+}
+@Override
+    public String toString() {
+        return "usuario{id=" + id + ", nomeCompleto='" + nomeCompleto + "', cpf='" + cpf +
+               "', email='" + email + "', telefone='" + telefone + "', statusCadastro='" + statusCadastro +
+               "', limiteEmprestimos=" + limiteEmprestimos + ", emprestimosAtivos=" + emprestimosAtivos + "}";
+    }
 }
